@@ -6,4 +6,4 @@ services:
     container_name: app
     tty: true
     volumes:
-      - .:/app
+      - ./app:/app
