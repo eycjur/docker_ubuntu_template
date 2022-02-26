@@ -14,6 +14,7 @@ build:
 	docker compose build --no-cache --force-rm
 up:
 	docker compose up -d --build
+.PHONY: app
 app:
 	docker compose exec app bash
 root:
