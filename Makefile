@@ -16,9 +16,9 @@ up:
 	docker compose up -d --build
 .PHONY: app
 app:
-	docker compose exec app bash
+	docker compose exec app zsh
 root:
-	docker compose exec -u root app bash
+	docker compose exec -u root app zsh
 create-project:
 	@make build
 	@make up

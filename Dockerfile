@@ -1,7 +1,8 @@
 FROM ubuntu:20.04
 WORKDIR /app
 
-RUN apt update && apt install -y sudo make git vim
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y sudo vim make zsh git neovim
 
 ARG ROOT_PASSWORD=pass
 RUN echo "root:${ROOT_PASSWORD}" | chpasswd
@@ -13,3 +14,7 @@ RUN useradd -m --uid ${DOCKER_UID} --groups sudo ${DOCKER_USER} \
     && echo "${DOCKER_USER}:${DOCKER_PASSWORD}" | chpasswd
 
 USER ${DOCKER_USER}
+
+RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
+RUN ~/dotfiles/install.sh
+CMD ["/bin/zsh"]
