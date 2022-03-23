@@ -2,13 +2,13 @@ FROM ubuntu:20.04
 WORKDIR /app
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install -y sudo vim make zsh git neovim
+RUN apt update && apt install -y sudo git make neovim vim zsh
 
 ARG ROOT_PASSWORD=pass
 RUN echo "root:${ROOT_PASSWORD}" | chpasswd
 
 ARG DOCKER_UID=1000
-ARG DOCKER_USER=user
+ARG DOCKER_USER=docker_user
 ARG DOCKER_PASSWORD=pass
 RUN useradd -m --uid ${DOCKER_UID} --groups sudo ${DOCKER_USER} \
     && echo "${DOCKER_USER}:${DOCKER_PASSWORD}" | chpasswd
